@@ -17,8 +17,8 @@ const App = () => {
           <Route path="/" exact={true} element={<MainPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/addtime" element={<AddtimePage />} />
           <Route path="/time" element={<TimePage />} />
+          <Route path="/addtime" element={<AddtimePage />} />
         </Routes>
       </div>
     </>

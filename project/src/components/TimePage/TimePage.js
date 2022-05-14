@@ -10,7 +10,9 @@ const TimePage = () => {
   const logout_onclick = (e) => {
     window.location.href = '/login';
   };
-
+  const AddSubjectPage = (e) => {
+    window.location.href = '/addtime';
+  };
   return (
     <>
       <div className="top-box">
@@ -31,7 +33,7 @@ const TimePage = () => {
 
       <div className="container">
         <div className="subject">
-          <button>시간표 추가</button>
+          <button onClick={AddSubjectPage}>시간표 추가</button>
         </div>
         <div className="time">
           <table class="tg">
