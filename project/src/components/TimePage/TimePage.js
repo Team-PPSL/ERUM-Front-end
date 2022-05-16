@@ -1,8 +1,21 @@
 import './TimePage.css';
 import { BsArrowLeftCircle } from 'react-icons/bs';
-import React, { useState, Component } from 'react';
+import React, { useState } from 'react';
+import MyModal from './Mymodal';
 
 const TimePage = () => {
+  const [isOpen, setOpen] = useState(false);
+
+  const handlerClick = () => {
+    setOpen(true);
+  };
+  const handleModalSubmit = () => {
+    setOpen(false);
+  };
+  const handleModalCancel = () => {
+    setOpen(false);
+  };
+
   const back_onclick = (e) => {
     window.location.href = '/';
   };
@@ -10,9 +23,7 @@ const TimePage = () => {
   const logout_onclick = (e) => {
     window.location.href = '/login';
   };
-  const AddSubjectPage = (e) => {
-    window.location.href = '/addtime';
-  };
+
   return (
     <>
       <div className="top-box">
@@ -33,7 +44,12 @@ const TimePage = () => {
 
       <div className="container">
         <div className="subject">
-          <button onClick={AddSubjectPage}>시간표 추가</button>
+          <button onClick={handlerClick}>시간표 추가</button>
+          <MyModal
+            isOpen={isOpen}
+            onSubmit={handleModalSubmit}
+            onCancel={handleModalCancel}
+          />
         </div>
         <div className="time">
           <table class="tg">
