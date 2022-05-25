@@ -48,20 +48,35 @@
 /* 중앙 */
 .container {
     width: 80%;
-    height: 1800px;
+    height: 1275px;
     margin: 0 auto;
     border-radius: 138px 138px 0 0;
     background-color: white;
 }
-.subject {
-    width: 20%;
-    height: 1800px;
+.first-box {
+    width: 30%;
+    height: 1275px;
     float: left;
 }
-.time {
+.second-box {
     width: 40%;
-    height: 1800px;
+    height: 1275px;
     float: left;
+}
+.third-box {
+    width: 30%;
+    height: 1275px;
+    float: right;
+}
+
+.Addsubject-button{
+    width: 8rem;
+    height: 3rem;
+    font-size: 20px;
+    color: white;
+    background-color: #17a934;
+    border-style: none;
+    border-radius: 20px;
 }
 .tg {
     border-collapse:collapse;
@@ -94,10 +109,4 @@
     vertical-align:top;
     width: 2rem;
     height: 2rem;
-}
-
-.result {
-    width: 40%;
-    height: 1800px;
-    float: left;
 }

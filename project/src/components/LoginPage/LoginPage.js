@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './LoginPage.css';
 import { BsFillPersonFill } from 'react-icons/bs';
 import { FaLock } from 'react-icons/fa';
 
+import TimePicker from 'react-time-picker';
+
 const LoginPage = () => {
+  const [value, onChange] = useState('10:00');
+
   return (
     <div className="LoginTemplate">
       <div className="ERUM">ERUM</div>
@@ -17,6 +21,7 @@ const LoginPage = () => {
         <button className="LoginButton">LOGIN</button>
         <div className="RegisterButton"> 회원가입 </div>
       </div>
+      <TimePicker inchange={onchange} value={value} />
     </div>
   );
 };

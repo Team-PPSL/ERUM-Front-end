@@ -1,78 +1,113 @@
-.LoginTemplate {
+.top-box {
     font-size: 10px;
-    background-color: white;
-    width: 23rem;
-    height: 32rem;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    border-radius: 90px;
-    /* 중앙정렬 */
-    margin: 13% auto;
-    /* margin-left: auto;
-    margin-right: auto; */
-    /* 세로정렬 */
-    /* margin-top: 13%; */
-}
-
-.ERUM {
-    /* 인라인 속성과 블럭속성 둘 다 포함 */
-    display: inline-block; 
     width: 100%;
-    margin-top: 15%;
-    text-align: center;
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.16);
-    font-family: NanumSquare_ac;
-    font-weight: 800;
-    font-size: 85px;
-    color: #17a934;
+    height: 7rem;
+    display: flex;
 }
-
-.LoginId {
-    display: flex; 
-    width: 70%;
-    height: 3rem;
-    margin: 0.7rem auto 1.5rem ;
-    border-radius: 36.5px;
-    border: solid 1px #17a934;
-    background-color: #fff;
-}
-
-.LoginPassword_1 {
-    display: flex; 
-    width: 70%;
-    height: 3rem;
-    margin: 0 auto 1.5rem ;
-    border-radius: 36.5px;
-    border: solid 1px #17a934;
-    background-color: #fff;
-}
-
-.LoginPassword_2 {
-    display: flex; 
-    width: 70%;
-    height: 3rem;
-    margin: 0 auto 1.5rem ;
-    border-radius: 36.5px;
-    border: solid 1px #17a934;
-    background-color: #fff;
-}
-
-.LoginButton {
-    display: block; 
-    width: 70%;
-    height: 3.5rem;
-    margin: 0 auto 3rem ;
-    border-radius: 36.5px;    
-    /* 글자 속성 */
-    text-align: center;
-    line-height: 4rem;
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.16);
+.calendar-button {
+    width: auto;
+    height: 7rem;
+    margin-top: -15px;
     font-family: NanumSquare_ac;
     font-weight: 800;
     font-size: 40px;
+    color: #17a934;
+    background-color:  #f0faee;
+    border: 0;
+    outline: 0;
+}
+.time-ERUM {
+    display: inline-block;
+    width: auto;
+    height: 7rem;
+    margin: 0 auto;
+    margin-top: 10px;;
+    color: #17a934;
+    font-size: 60px;
+    font-family: NanumSquare_ac;
+    font-weight: 800;
+}
+.login-button {
+    height: 3rem;
+    margin-top: 10px ;
+    margin-right: 10px;
+    border-radius: 36.5px;    
+    /* 글자 속성 */
+    text-align: right;
+    line-height: 3.5rem;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.16);
+    font-family: NanumSquare_ac;
+    font-weight: 700;
+    font-size: 30px;
     color: #ffffff;
     background-color: #17a934;
+    /* button 테두리 지우기*/
+    border: 0;
+    outline: 0;
 }
-.icon {
-    margin-left: 8px;
-    margin-top: 7px;
+/* 중앙 */
+.container {
+    width: 80%;
+    height: 1800px;
+    margin: 0 auto;
+    border-radius: 138px 138px 0 0;
+    background-color: white;
+}
+.subject {
+    width: 25%;
+    height: 1000px;
+    float: left;
+}
+
+.Addsubject-button{
+    width: 8rem;
+    height: 3rem;
+    font-size: 20px;
+    color: white;
+    background-color: #17a934;
+    border-style: none;
+    border-radius: 20px;
+}
+.time {
+    width: 40%;
+    height: 1800px;
+    float: left;
+}
+.tg {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+.tg td{
+    border-color:black;
+    border-style:solid;
+    border-width:1px;
+    font-family:Arial, sans-serif;
+    font-size:14px;
+    overflow:hidden;
+    padding:10px 5px;
+    word-break:normal;
+}
+.tg th{
+    border-color:#707070;
+    border-width:1px;
+    font-family:Arial, sans-serif;
+    font-size:14px;
+    font-weight:normal;
+    overflow:hidden;
+    padding:10px 5px;
+    word-break:normal;
+}
+.tg .time-box{
+    /* background-color: #f0faee; */
+    border-color:inherit;
+    text-align:left;
+    vertical-align:top;
+    width: 2rem;
+    height: 2rem;
+}
+
+.result {
+    width: 40%;
+    height: 1800px;
+    float: left;
 }
