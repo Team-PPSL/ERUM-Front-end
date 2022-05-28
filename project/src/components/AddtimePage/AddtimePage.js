@@ -1,18 +1,22 @@
 import './AddtimePage.css';
 import { BsArrowLeftCircle } from 'react-icons/bs';
 import React, { useState } from 'react';
+import randomColor from 'randomcolor';
+import { Helmet } from 'react-helmet';
 
 const TimePage = () => {
-  const [isOpen, setOpen] = useState(false);
+  // 과목 이름 상태관리
+  const [subjectName, setSubjectName] = useState('');
 
-  const handlerClick = () => {
-    setOpen(true);
-  };
-  const handleModalSubmit = () => {
-    setOpen(false);
-  };
-  const handleModalCancel = () => {
-    setOpen(false);
+  // 렌덤 색상 변수들
+  const color1 = randomColor();
+  const color2 = randomColor();
+  const color3 = randomColor();
+  const color4 = randomColor();
+
+  // 과목 이름 데이터 가져오는 함수
+  const getData = (subjectName) => {
+    setSubjectName(subjectName);
   };
 
   const back_onclick = (e) => {
@@ -23,8 +27,13 @@ const TimePage = () => {
     window.location.href = '/time';
   };
 
+  const number = 0;
+
   return (
     <>
+      <Helmet>
+        <title>ERUM-schedule</title>
+      </Helmet>
       <div className="top-box">
         <div>
           <button className="calendar-button" onClick={back_onclick}>
@@ -42,12 +51,61 @@ const TimePage = () => {
       </div>
 
       <div className="container">
-        <div className="subject">
-          <button className="Addsubject-button" onClick={handlerClick}>
-            시간표 추가
+        <div className="first-box">
+          <button
+            style={{
+              backgroundColor: color1,
+              width: '100px',
+              height: '50px',
+              color: 'black',
+              borderRadius: '30px',
+              border: 0,
+              outline: 0,
+            }}
+          >
+            <span>{subjectName}</span>
+          </button>
+          <button
+            style={{
+              backgroundColor: color2,
+              width: '100px',
+              height: '50px',
+              color: 'black',
+              borderRadius: '30px',
+              border: 0,
+              outline: 0,
+            }}
+          >
+            <span>과목2</span>
+          </button>
+          <button
+            style={{
+              backgroundColor: color3,
+              width: '100px',
+              height: '50px',
+              color: 'black',
+              borderRadius: '30px',
+              border: 0,
+              outline: 0,
+            }}
+          >
+            <span>과목3</span>
+          </button>
+          <button
+            style={{
+              backgroundColor: color4,
+              width: '100px',
+              height: '50px',
+              color: 'black',
+              borderRadius: '30px',
+              border: 0,
+              outline: 0,
+            }}
+          >
+            <span>과목4</span>
           </button>
         </div>
-        <div className="time">
+        <div className="second-box">
           <table class="tg">
             <thead>
               <tr>
@@ -247,7 +305,12 @@ const TimePage = () => {
             </tbody>
           </table>
         </div>
-        <div className="result"></div>
+        <div className="third-box">
+          <div className="Addsubject-box">
+            <div>오늘의 공부시간</div>
+            <span>0시간</span>
+          </div>
+        </div>
       </div>
     </>
   );

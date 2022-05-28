@@ -3,6 +3,7 @@ import { BsArrowLeftCircle } from 'react-icons/bs';
 import React, { useState } from 'react';
 import MyModal from './Mymodal';
 import randomColor from 'randomcolor';
+import { Helmet } from 'react-helmet';
 
 const TimePage = () => {
   // modal창 열고 닫는 상태관리
@@ -47,6 +48,9 @@ const TimePage = () => {
 
   return (
     <>
+      <Helmet>
+        <title>ERUM-schedule</title>
+      </Helmet>
       <div className="top-box">
         <div>
           <button className="calendar-button" onClick={back_onclick}>
@@ -89,7 +93,7 @@ const TimePage = () => {
               outline: 0,
             }}
           >
-            <span>과목1</span>
+            <span>과목2</span>
           </button>
           <button
             style={{
@@ -102,7 +106,7 @@ const TimePage = () => {
               outline: 0,
             }}
           >
-            <span>과목1</span>
+            <span>과목3</span>
           </button>
           <button
             style={{
@@ -115,7 +119,7 @@ const TimePage = () => {
               outline: 0,
             }}
           >
-            <span>과목1</span>
+            <span>과목4</span>
           </button>
         </div>
         <div className="second-box">
