@@ -1,9 +1,17 @@
 import './TimePage.css';
 import { BsArrowLeftCircle } from 'react-icons/bs';
-import React, { useState } from 'react';
+import React, { createElement, useState } from 'react';
 import MyModal from './Mymodal';
 import randomColor from 'randomcolor';
 import { Helmet } from 'react-helmet';
+import TimeTable from './TimeTable';
+
+// 박스 생성하는 함수
+// function CreateDiv() {
+//   const div = document.createElement('div');
+//   div.innerHTML = '이것이 추가될 문장입니다.';
+//   document.querySelector('#myDIV').appeadChild(div);
+// }
 
 const TimePage = () => {
   // modal창 열고 닫는 상태관리
@@ -45,6 +53,60 @@ const TimePage = () => {
   const logout_onclick = (e) => {
     window.location.href = '/addtime';
   };
+
+  // 시간 테이블
+  let t = 0;
+  const timelist = [];
+  while (t < 2400) {
+    timelist.push(t);
+    if ((t - 50) % 100 === 0) {
+      t += 50;
+    } else if (t - 50 === 0) {
+      t += 50;
+    } else {
+      t += 10;
+    }
+  }
+
+  // const divId = [1, 2, 3, 4, 5, 6];
+  const listItem = timelist.map((id) => (
+    <div
+      id={id}
+      style={{
+        width: '67px',
+        height: '30px',
+        borderColor: 'black',
+        borderStyle: 'solid',
+        float: 'left',
+      }}
+    ></div>
+    // <tr>
+    //   <td
+    //     id={id}
+    //     style={{
+    //       width: '67px',
+    //       height: '30px',
+    //       borderColor: 'black',
+    //       borderStyle: 'solid',
+    //       float: 'left',
+    //     }}
+    //   ></td>
+    // </tr>
+  ));
+
+  // const divId = [1, 2, 3, 4, 5, 6];
+  // const listItem = divId.map((id) => (
+  //   <div
+  //     id={id}
+  //     style={{
+  //       width: '67px',
+  //       height: '30px',
+  //       borderColor: 'black',
+  //       borderStyle: 'solid',
+  //       float: 'left',
+  //     }}
+  //   ></div>
+  // ));
 
   return (
     <>
@@ -123,7 +185,8 @@ const TimePage = () => {
           </button>
         </div>
         <div className="second-box">
-          <table class="tg">
+          <table>{listItem}</table>
+          {/* <table class="tg">
             <thead>
               <tr>
                 <td class="time-box"></td>
@@ -320,7 +383,7 @@ const TimePage = () => {
                 <td class="time-box"></td>
               </tr>
             </tbody>
-          </table>
+          </table> */}
         </div>
         <div className="third-box">
           <button className="Addsubject-button" onClick={handlerClick}>

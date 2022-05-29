@@ -69,20 +69,7 @@ const Mymodal = ({ isOpen, onSubmit, onCancel, getData }) => {
     '22',
     '23',
   ];
-  const MinuteOptions = [
-    '00',
-    '05',
-    '10',
-    '15',
-    '20',
-    '25',
-    '30',
-    '35',
-    '40',
-    '45',
-    '50',
-    '55',
-  ];
+  const MinuteOptions = ['00', '10', '20', '30', '40', '50'];
 
   const handleSelect1 = (e) => {
     setSelected1(e.target.value);
