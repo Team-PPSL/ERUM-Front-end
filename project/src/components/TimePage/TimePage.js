@@ -68,45 +68,25 @@ const TimePage = () => {
     }
   }
 
-  // const divId = [1, 2, 3, 4, 5, 6];
   const listItem = timelist.map((id) => (
     <div
       id={id}
       style={{
-        width: '67px',
+        width: '15%',
         height: '30px',
         borderColor: 'black',
         borderStyle: 'solid',
         float: 'left',
       }}
     ></div>
-    // <tr>
-    //   <td
-    //     id={id}
-    //     style={{
-    //       width: '67px',
-    //       height: '30px',
-    //       borderColor: 'black',
-    //       borderStyle: 'solid',
-    //       float: 'left',
-    //     }}
-    //   ></td>
-    // </tr>
   ));
 
-  // const divId = [1, 2, 3, 4, 5, 6];
-  // const listItem = divId.map((id) => (
-  //   <div
-  //     id={id}
-  //     style={{
-  //       width: '67px',
-  //       height: '30px',
-  //       borderColor: 'black',
-  //       borderStyle: 'solid',
-  //       float: 'left',
-  //     }}
-  //   ></div>
-  // ));
+  //기준 시간
+  const stdlist = [];
+  for (let std = 0; std < 24; std++) {
+    stdlist.push(('00' + std).slice(-2));
+  }
+  const stdItem = stdlist.map((num) => <div>{num}</div>);
 
   return (
     <>
@@ -184,207 +164,8 @@ const TimePage = () => {
             <span>과목4</span>
           </button>
         </div>
-        <div className="second-box">
-          <table>{listItem}</table>
-          {/* <table class="tg">
-            <thead>
-              <tr>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-              </tr>
-              <tr>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-              </tr>
-              <tr>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-              </tr>
-              <tr>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-              </tr>
-              <tr>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-              </tr>
-              <tr>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-              </tr>
-              <tr>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-              </tr>
-              <tr>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-              </tr>
-              <tr>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-              </tr>
-              <tr>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-              </tr>
-              <tr>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-              </tr>
-              <tr>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-              </tr>
-              <tr>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-              </tr>
-              <tr>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-              </tr>
-              <tr>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-              </tr>
-              <tr>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-              </tr>
-              <tr>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-              </tr>
-              <tr>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-              </tr>
-              <tr>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-              </tr>
-              <tr>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-              </tr>
-              <tr>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-              </tr>
-              <tr>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-              </tr>
-              <tr>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-                <td class="time-box"></td>
-              </tr>
-            </tbody>
-          </table> */}
-        </div>
+        <div className="timelist-box">{stdItem}</div>
+        <div className="second-box">{listItem}</div>
         <div className="third-box">
           <button className="Addsubject-button" onClick={handlerClick}>
             시간표 추가
