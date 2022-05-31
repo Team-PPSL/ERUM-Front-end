@@ -15,6 +15,17 @@ const Mymodal = ({ isOpen, onSubmit, onCancel, getData }) => {
   const [Selected3, setSelected3] = useState('');
   const [Selected4, setSelected4] = useState('');
 
+  // 컬러 선택 리스트
+  const colors = [
+    '#ffafb0',
+    '#fdd0ac',
+    '#fdfa87',
+    '#bee9b4',
+    '#aee4ff',
+    '#caa6fe',
+    'violet',
+  ];
+
   // 클릭시 제출
   const handleClickSubmit = (e) => {
     onSubmit();
@@ -162,6 +173,24 @@ const Mymodal = ({ isOpen, onSubmit, onCancel, getData }) => {
                 ))}
               </select>
             </div>
+          </div>
+        </div>
+        {/* 색상선택 */}
+        <div style={MiddleBox}>
+          <div style={{ display: 'flex' }}>
+            {colors.map((color) => (
+              <div
+                key={color}
+                style={{
+                  background: color,
+                  width: '24px',
+                  height: '24px',
+                  margin: '9px',
+                  cursor: 'pointer',
+                  borderRadius: '50%',
+                }}
+              />
+            ))}
           </div>
         </div>
 

@@ -10,6 +10,7 @@ function MainPage() {
 
   const events = (e) => {
     window.location.href = '/time';
+    // 해당 날짜 서버에 보내기
   };
   return (
     <div className="app">

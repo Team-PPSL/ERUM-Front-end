@@ -54,33 +54,6 @@ const TimePage = () => {
     window.location.href = '/addtime';
   };
 
-  // 시간 테이블
-  let t = 0;
-  const timelist = [];
-  while (t < 2400) {
-    timelist.push(t);
-    if ((t - 50) % 100 === 0) {
-      t += 50;
-    } else if (t - 50 === 0) {
-      t += 50;
-    } else {
-      t += 10;
-    }
-  }
-
-  const listItem = timelist.map((id) => (
-    <div
-      id={id}
-      style={{
-        width: '15%',
-        height: '30px',
-        borderColor: 'black',
-        borderStyle: 'solid',
-        float: 'left',
-      }}
-    ></div>
-  ));
-
   //기준 시간
   const stdlist = [];
   for (let std = 0; std < 24; std++) {
@@ -165,7 +138,9 @@ const TimePage = () => {
           </button>
         </div>
         <div className="timelist-box">{stdItem}</div>
-        <div className="second-box">{listItem}</div>
+        <div className="second-box">
+          <TimeTable />
+        </div>
         <div className="third-box">
           <button className="Addsubject-button" onClick={handlerClick}>
             시간표 추가
