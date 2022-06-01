@@ -24,11 +24,11 @@
     margin-top: 10px;;
     color: #17a934;
     font-size: 60px;
-    font-family: NanumSquare_ac;
+    font-family: "KITA";
     font-weight: 800;
 }
 .login-button {
-    height: 3rem;
+    height: 3.5rem;
     margin-top: 10px ;
     margin-right: 10px;
     border-radius: 36.5px;    
@@ -36,7 +36,7 @@
     text-align: right;
     line-height: 3.5rem;
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.16);
-    font-family: NanumSquare_ac;
+    font-family: "FrancoisOne";
     font-weight: 700;
     font-size: 30px;
     color: #ffffff;
@@ -74,12 +74,17 @@
     height:860px;
     float: left;
 }
-
+.subject-box {
+    width: 80%;
+    margin-top: 5rem;
+    margin-left: 5rem;
+}
 .Addsubject-box{
     width: rem;
     height: 5rem;
     font-size: 40px;
     font-weight: 800;
+    font-family: "KITA";
     color: black;
     left: 66%;
     bottom: 40%;
@@ -88,36 +93,4 @@
 .Addsubject-box > span {
     left:70%;
     bottom: 30%;
-}
-.tg {
-    border-collapse:collapse;
-    border-spacing:0;
-}
-.tg td{
-    border-color:black;
-    border-style:solid;
-    border-width:1px;
-    font-family:Arial, sans-serif;
-    font-size:14px;
-    overflow:hidden;
-    padding:10px 5px;
-    word-break:normal;
-}
-.tg th{
-    border-color:#707070;
-    border-width:1px;
-    font-family:Arial, sans-serif;
-    font-size:14px;
-    font-weight:normal;
-    overflow:hidden;
-    padding:10px 5px;
-    word-break:normal;
-}
-.tg .time-box{
-    /* background-color: #f0faee; */
-    border-color:inherit;
-    text-align:left;
-    vertical-align:top;
-    width: 55px;
-    height: 30px;
 }

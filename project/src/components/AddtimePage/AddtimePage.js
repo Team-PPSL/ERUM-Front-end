@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import randomColor from 'randomcolor';
 import { Helmet } from 'react-helmet';
 import TimeTable from '../TimePage/TimeTable';
+import queryString from 'query-string';
 
 const TimePage = () => {
   // 과목 이름 상태관리
@@ -24,36 +25,12 @@ const TimePage = () => {
     window.location.href = '/';
   };
 
+  // 현재 url에서 쿼리값 받아서 다시 라우팅
   const logout_onclick = (e) => {
-    window.location.href = '/time';
+    let qs = queryString.parse(window.location.search);
+    console.log(Object.values(qs));
+    window.location.href = `/plan?create_at=${Object.values(qs)}`;
   };
-
-  // // 시간 테이블
-  // let t = 0;
-  // const timelist = [];
-  // while (t < 2400) {
-  //   timelist.push(t);
-  //   if ((t - 50) % 100 === 0) {
-  //     t += 50;
-  //   } else if (t - 50 === 0) {
-  //     t += 50;
-  //   } else {
-  //     t += 10;
-  //   }
-  // }
-
-  // const listItem = timelist.map((id) => (
-  //   <div
-  //     id={id}
-  //     style={{
-  //       width: '15%',
-  //       height: '30px',
-  //       borderColor: 'black',
-  //       borderStyle: 'solid',
-  //       float: 'left',
-  //     }}
-  //   ></div>
-  // ));
 
   //기준 시간
   const stdlist = [];
@@ -62,6 +39,9 @@ const TimePage = () => {
   }
   const stdItem = stdlist.map((num) => <div>{num}</div>);
 
+  // cosnt onChange = () => {
+
+  // }
   return (
     <>
       <Helmet>
@@ -78,40 +58,42 @@ const TimePage = () => {
         </div>
         <div>
           <button className="login-button" onClick={logout_onclick}>
-            계획표
+            PLANNER
           </button>
         </div>
       </div>
 
       <div className="container">
         <div className="first-box">
-          <button
-            style={{
-              backgroundColor: color1,
-              width: '100px',
-              height: '50px',
-              color: 'black',
-              borderRadius: '30px',
-              border: 0,
-              outline: 0,
-            }}
-          >
-            <span>{subjectName}</span>
-          </button>
-          <button
-            style={{
-              backgroundColor: color2,
-              width: '100px',
-              height: '50px',
-              color: 'black',
-              borderRadius: '30px',
-              border: 0,
-              outline: 0,
-            }}
-          >
-            <span>과목2</span>
-          </button>
-          <button
+          <div className="subject-box">
+            <button
+              style={{
+                backgroundColor: color1,
+                width: '150px',
+                height: '50px',
+                color: 'black',
+                marginBottom: '30px',
+                borderRadius: '30px',
+                border: 0,
+                outline: 0,
+              }}
+            >
+              <span>논리회로</span>
+            </button>
+            <button
+              style={{
+                backgroundColor: color2,
+                width: '150px',
+                height: '50px',
+                color: 'black',
+                borderRadius: '30px',
+                border: 0,
+                outline: 0,
+              }}
+            >
+              <span>머신러닝</span>
+            </button>
+            {/* <button 
             style={{
               backgroundColor: color3,
               width: '100px',
@@ -136,7 +118,8 @@ const TimePage = () => {
             }}
           >
             <span>과목4</span>
-          </button>
+          </button> */}
+          </div>
         </div>
         <div className="timelist-box">{stdItem}</div>
         <div className="second-box">
@@ -145,7 +128,7 @@ const TimePage = () => {
         <div className="third-box">
           <div className="Addsubject-box">
             <div>오늘의 공부시간</div>
-            <span>0시간</span>
+            <span style={{ margin: '0 auto' }}> 0시간</span>
           </div>
         </div>
       </div>

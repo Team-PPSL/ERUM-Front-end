@@ -8,7 +8,7 @@
     width: auto;
     height: 7rem;
     margin-top: -15px;
-    font-family: NanumSquare_ac;
+    font-family: "FrancoisOne";
     font-weight: 800;
     font-size: 40px;
     color: #17a934;
@@ -24,19 +24,20 @@
     margin-top: 10px;;
     color: #17a934;
     font-size: 60px;
-    font-family: NanumSquare_ac;
+    font-family: "FrancoisOne";
     font-weight: 800;
 }
 .login-button {
-    height: 3rem;
+    width: 8rem;
+    height: 3.5rem;
     margin-top: 10px ;
     margin-right: 10px;
     border-radius: 36.5px;    
     /* 글자 속성 */
-    text-align: right;
+    text-align: center;
     line-height: 3.5rem;
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.16);
-    font-family: NanumSquare_ac;
+    font-family: "FrancoisOne";
     font-weight: 700;
     font-size: 30px;
     color: #ffffff;
@@ -48,37 +49,38 @@
 /* 중앙 */
 .container {
     width: 80%;
-    height: 800px;
+    height: 950px;
     margin: 0 auto;
     border-radius: 138px 138px 0 0;
     background-color: white;
 }
 .first-box {
     width: 25%;
-    height: 800px;
+    height: 950px;
     float: left;
 }
 .timelist-box {
     width: 3.5%;
-    height: 800px;
+    height: 950px;
     float: left;
     font-size: 27.5px;
 }
 .second-box {
     width: 40%;
-    height: 800px;
+    height: 950px;
     float: left;
 }
 .third-box {
     width: 30%;
-    height: 800px;
+    height: 950px;
     float: left;
 }
 
 .Addsubject-button{
     width: 15rem;
-    height: 5rem;
+    height: 4.5rem;
     font-size: 40px;
+    font-family: "KITA";
     font-weight: 700;
     color: white;
     background-color: #17a934;

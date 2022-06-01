@@ -17,7 +17,7 @@ const TimeTable = () => {
 
   const listItem = timelist.map((id) => (
     <div
-      id={id}
+      key={id}
       style={{
         width: '15%',
         height: '30.5px',
@@ -27,6 +27,7 @@ const TimeTable = () => {
       }}
     ></div>
   ));
+
   return <>{listItem}</>;
 };
 

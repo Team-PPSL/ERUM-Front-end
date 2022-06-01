@@ -3,6 +3,7 @@ import { BsArrowLeftCircle } from 'react-icons/bs';
 
 import ReactModal from 'react-modal';
 import './Mymodal.css';
+import ColorPick from './ColorPick';
 
 // submit 하면 인스턴스 변수에 저장하는 클래스를 만들어서 거기서 데이터를 불러오는 형식으로 사용
 
@@ -15,6 +16,8 @@ const Mymodal = ({ isOpen, onSubmit, onCancel, getData }) => {
   const [Selected3, setSelected3] = useState('');
   const [Selected4, setSelected4] = useState('');
 
+  // 컬러 선택 상태변수
+
   // 컬러 선택 리스트
   const colors = [
     '#ffafb0',
@@ -25,6 +28,16 @@ const Mymodal = ({ isOpen, onSubmit, onCancel, getData }) => {
     '#caa6fe',
     'violet',
   ];
+
+  // 하나만 선택할 수 있음
+  const checkOnlyOne = (checkThis) => {
+    const checkboxes = document.getElementsByName('colorselect');
+    for (let i = 0; i < checkboxes.length; i++) {
+      if (checkboxes[i] !== checkThis) {
+        checkboxes[i].checked = false;
+      }
+    }
+  };
 
   // 클릭시 제출
   const handleClickSubmit = (e) => {
@@ -176,24 +189,138 @@ const Mymodal = ({ isOpen, onSubmit, onCancel, getData }) => {
           </div>
         </div>
         {/* 색상선택 */}
-        <div style={MiddleBox}>
-          <div style={{ display: 'flex' }}>
-            {colors.map((color) => (
-              <div
-                key={color}
-                style={{
-                  background: color,
-                  width: '24px',
-                  height: '24px',
-                  margin: '9px',
-                  cursor: 'pointer',
-                  borderRadius: '50%',
-                }}
-              />
-            ))}
-          </div>
+        <div className="color-box">
+          <div
+            key="1"
+            style={{
+              backgroundColor: colors[0],
+              width: '24px',
+              height: '24px',
+              margin: '0 9px 0 9px',
+              float: 'left',
+              cursor: 'pointer',
+              borderRadius: '50%',
+              border: 0,
+              outline: 0,
+            }}
+            name="colorselect"
+            value="1"
+            onChange={(e) => checkOnlyOne(e.target)}
+          />
+          <div
+            key="2"
+            style={{
+              backgroundColor: colors[1],
+              width: '24px',
+              height: '24px',
+              margin: '0 9px 0 9px',
+              float: 'left',
+              cursor: 'pointer',
+              borderRadius: '50%',
+              border: 0,
+              outline: 0,
+            }}
+            name="colorselect"
+            value="2"
+            onChange={(e) => checkOnlyOne(e.target)}
+          />
+          <div
+            key="3"
+            style={{
+              backgroundColor: colors[2],
+              width: '24px',
+              height: '24px',
+              margin: '0 9px 0 9px',
+              float: 'left',
+              cursor: 'pointer',
+              borderRadius: '50%',
+              border: 0,
+              outline: 0,
+            }}
+            name="colorselect"
+            value="3"
+            onChange={(e) => checkOnlyOne(e.target)}
+          />
+          <div
+            key="4"
+            style={{
+              backgroundColor: colors[3],
+              width: '24px',
+              height: '24px',
+              margin: '0 9px 0 9px',
+              float: 'left',
+              cursor: 'pointer',
+              borderRadius: '50%',
+              border: 0,
+              outline: 0,
+            }}
+            name="colorselect"
+            value="4"
+            onChange={(e) => checkOnlyOne(e.target)}
+          />
+          <div
+            key="5"
+            style={{
+              backgroundColor: colors[4],
+              width: '24px',
+              height: '24px',
+              margin: '0 9px 0 9px',
+              float: 'left',
+              cursor: 'pointer',
+              borderRadius: '50%',
+              border: 0,
+              outline: 0,
+            }}
+            name="colorselect"
+            value="5"
+            onChange={(e) => checkOnlyOne(e.target)}
+          />
+          <div
+            key="6"
+            style={{
+              backgroundColor: colors[5],
+              width: '24px',
+              height: '24px',
+              margin: '0 9px 0 9px',
+              float: 'left',
+              cursor: 'pointer',
+              borderRadius: '50%',
+              border: 0,
+              outline: 0,
+            }}
+            name="colorselect"
+            value="6"
+            onChange={(e) => checkOnlyOne(e.target)}
+          />
+          <div
+            key="7"
+            style={{
+              backgroundColor: colors[6],
+              width: '24px',
+              height: '24px',
+              margin: '0 9px 0 9px',
+              float: 'left',
+              cursor: 'pointer',
+              borderRadius: '50%',
+              border: 0,
+              outline: 0,
+            }}
+            name="colorselect"
+            value="colors[6]"
+            onChange={(e) => checkOnlyOne(e.target)}
+          />
         </div>
-
+        {/* 체크박스 */}
+        <div className="check-box">
+          <input type="checkbox" className="checkstyle" />
+          <input type="checkbox" className="checkstyle" />
+          <input type="checkbox" className="checkstyle" />
+          <input type="checkbox" className="checkstyle" />
+          <input type="checkbox" className="checkstyle" />
+          <input type="checkbox" className="checkstyle" />
+          <input type="checkbox" className="checkstyle" />
+        </div>
+        {/* 시간표 추가 버튼 */}
         <div className="bottom-box">
           <button
             className="subject-button"

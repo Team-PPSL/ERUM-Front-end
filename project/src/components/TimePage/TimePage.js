@@ -1,10 +1,11 @@
 import './TimePage.css';
 import { BsArrowLeftCircle } from 'react-icons/bs';
-import React, { createElement, useState } from 'react';
+import React, { createElement, useEffect, useState } from 'react';
 import MyModal from './Mymodal';
 import randomColor from 'randomcolor';
 import { Helmet } from 'react-helmet';
 import TimeTable from './TimeTable';
+import queryString from 'query-string';
 
 // 박스 생성하는 함수
 // function CreateDiv() {
@@ -50,8 +51,11 @@ const TimePage = () => {
     window.location.href = '/';
   };
 
+  // 현재 url에서 쿼리값 받아서 다시 라우팅
   const logout_onclick = (e) => {
-    window.location.href = '/addtime';
+    let qs = queryString.parse(window.location.search);
+    console.log(Object.values(qs));
+    window.location.href = `/report?create_at=${Object.values(qs)}`;
   };
 
   //기준 시간
@@ -59,7 +63,7 @@ const TimePage = () => {
   for (let std = 0; std < 24; std++) {
     stdlist.push(('00' + std).slice(-2));
   }
-  const stdItem = stdlist.map((num) => <div>{num}</div>);
+  const stdItem = stdlist.map((num) => <div key={num}>{num}</div>);
 
   return (
     <>
@@ -77,65 +81,57 @@ const TimePage = () => {
         </div>
         <div>
           <button className="login-button" onClick={logout_onclick}>
-            실제 현황
+            REPORT
           </button>
         </div>
       </div>
 
       <div className="container">
         <div className="first-box">
-          <button
-            style={{
-              backgroundColor: color1,
-              width: '100px',
-              height: '50px',
-              color: 'black',
-              borderRadius: '30px',
-              border: 0,
-              outline: 0,
-            }}
-          >
-            <span>{subjectName}</span>
-          </button>
-          <button
-            style={{
-              backgroundColor: color2,
-              width: '100px',
-              height: '50px',
-              color: 'black',
-              borderRadius: '30px',
-              border: 0,
-              outline: 0,
-            }}
-          >
-            <span>과목2</span>
-          </button>
-          <button
-            style={{
-              backgroundColor: color3,
-              width: '100px',
-              height: '50px',
-              color: 'black',
-              borderRadius: '30px',
-              border: 0,
-              outline: 0,
-            }}
-          >
-            <span>과목3</span>
-          </button>
-          <button
-            style={{
-              backgroundColor: color4,
-              width: '100px',
-              height: '50px',
-              color: 'black',
-              borderRadius: '30px',
-              border: 0,
-              outline: 0,
-            }}
-          >
-            <span>과목4</span>
-          </button>
+          <div className="subject-box">
+            <button
+              style={{
+                backgroundColor: color1,
+                width: '150px',
+                height: '50px',
+                color: 'black',
+                marginBottom: '30px',
+                borderRadius: '30px',
+                border: 0,
+                outline: 0,
+              }}
+            >
+              <span>{subjectName}</span>
+            </button>
+            <button
+              style={{
+                backgroundColor: color2,
+                width: '150px',
+                height: '50px',
+                color: 'black',
+                marginBottom: '30px',
+                borderRadius: '30px',
+                border: 0,
+                outline: 0,
+              }}
+            >
+              <span>과목2</span>
+            </button>
+            <button
+              style={{
+                backgroundColor: color3,
+                width: '150px',
+                height: '50px',
+                color: 'black',
+                marginBottom: '30px',
+                borderRadius: '30px',
+                border: 0,
+                outline: 0,
+              }}
+            >
+              <span>과목3</span>
+            </button>
+          </div>
         </div>
         <div className="timelist-box">{stdItem}</div>
         <div className="second-box">
