@@ -32,7 +32,6 @@ const Mymodal = ({ isOpen, onSubmit, onCancel, getData }) => {
     '#bee9b4',
     '#aee4ff',
     '#caa6fe',
-    'violet',
   ];
 
   // 하나만 선택할 수 있음

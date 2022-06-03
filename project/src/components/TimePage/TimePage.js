@@ -42,8 +42,10 @@ const TimePage = () => {
   // 렌덤 색상 변수들
   const color = [randomColor(), randomColor(), randomColor()];
 
+  const NameList = [];
+
   // 시간표 추가 클릭시 실행되는 함수
-  const handlerClick = () => {
+  const handlerClick = (e) => {
     setOpen(true);
   };
 
@@ -123,6 +125,23 @@ const TimePage = () => {
     </div>
   ));
 
+  const NameItem = NameList.map((name) => (
+    <button
+      style={{
+        width: '150px',
+        height: '50px',
+        color: 'black',
+        marginBottom: '30px',
+        borderRadius: '30px',
+        border: 0,
+        outline: 0,
+        backgroundColor: 'pink',
+      }}
+    >
+      name
+    </button>
+  ));
+
   return (
     <>
       <Helmet>
@@ -189,6 +208,7 @@ const TimePage = () => {
             >
               <span>{DataList[2].subject}</span>
             </button> */}
+            <TimeTable />
           </div>
         </div>
         <div className="timelist-box">{stdItem}</div>

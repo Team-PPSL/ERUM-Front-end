@@ -29,11 +29,11 @@ import GetAPI from '../../api/GetAPI';
 
 const AddTimePage = () => {
   // 데이터 받아오기
-  const [Test, setTest] = useState([]);
-  const [subject, setsubject] = useState('');
-  const [starttime, setStarttime] = useState(0);
-  const [endtime, setEndtime] = useState(0);
-  const [createAt, setCreatedAt] = useState(0);
+  const [Data, setData] = useState([]);
+  // const [subject, setsubject] = useState('');
+  // const [starttime, setStarttime] = useState(0);
+  // const [endtime, setEndtime] = useState(0);
+  // const [createAt, setCreatedAt] = useState(0);
 
   // 현재 쿼리 스티링 받아오기
   let qs = queryString.parse(window.location.search);
@@ -67,20 +67,22 @@ const AddTimePage = () => {
 
   // 현재 날짜정보 get해와서 데이터 가져오기
   axios
-    .get(`http://127.0.0.1:8000/plan?create_at=${Object.values(qs)}`)
-    .then(function (response) {
-      setTest(response.data);
+    .get(`http://127.0.0.1:8000/report?create_at=${Object.values(qs)}`)
+    .then((response) => {
+      setData(...response.data);
       console.log(response);
     })
-    .catch(function (error) {
+    .catch((error) => {
       // handle error
       console.log(error);
     })
-    .then(function () {
+    .then(() => {
       // always executed
     });
 
   // 조회 데이터가 있을 경우
+  const DataList = Data.map((e) => e);
+  console.log(DataList);
 
   // 시간표 구성 div
   let i = 0;
@@ -94,16 +96,16 @@ const AddTimePage = () => {
         borderStyle: 'solid',
         float: 'left',
         color:
-          i < Test.length && idx >= Test[i].starttime && idx <= Test[i].endtime
+          i < Data.lenght && idx >= Data[i].starttime && idx <= Data[i].endtime
             ? color[i]
             : 'white',
         backgroundColor:
-          i < Test.length && idx >= Test[i].starttime && idx <= Test[i].endtime
+          i < Data.length && idx >= Data[i].starttime && idx <= Data[i].endtime
             ? color[i]
             : 'white',
       }}
     >
-      {i < Test.length && idx === Test[i].endtime ? (i += 1) : null}
+      {i < Data.length && idx === Data[i].endtime ? (i += 1) : null}
     </div>
   ));
 
