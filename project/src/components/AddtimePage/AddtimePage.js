@@ -27,25 +27,10 @@ import GetAPI from '../../api/GetAPI';
 //   },
 // ];
 
-// 현재 쿼리 스티링 받아오기
-let qs = queryString.parse(window.location.search);
-
-// 현재 날짜정보 get해와서 데이터 가져오기
-axios
-  .get(`http://127.0.0.1:8000/plan?create_at=${Object.values(qs)}`)
-  .then(function (response) {
-    const DataList = response;
-    console.log(response);
-  })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-  })
-  .then(function () {
-    // always executed
-  });
-
 const AddTimePage = () => {
+  // 현재 쿼리 스티링 받아오기
+  let qs = queryString.parse(window.location.search);
+
   // 과목 이름 상태관리
   const [subjectName, setSubjectName] = useState('');
 
@@ -73,7 +58,26 @@ const AddTimePage = () => {
     }
   }
 
+  // 현재 날짜정보 get해와서 데이터 가져오기
+  axios
+    .get(`http://127.0.0.1:8000/plan?create_at=${Object.values(qs)}`)
+    .then(function (response) {
+      GetData(response);
+      console.log(response);
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
+    .then(function () {
+      // always executed
+    });
+
+  const GetData = (response) => {
+    return response;
+  };
   // 시간표 구성 div
+  const DataList = GetData();
   let i = 0;
   const listItem = timelist.map((idx) => (
     <div
