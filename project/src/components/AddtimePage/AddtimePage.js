@@ -9,6 +9,9 @@ import axios from 'axios';
 import TimeTable from '../TimePage/TimeTable';
 import GetAPI from '../../api/GetAPI';
 
+axios.defaults.xsrfCookieName = 'csrftoken';
+axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+
 // 더미 데이터
 // const DataList = [
 //   {
@@ -42,7 +45,15 @@ const AddTimePage = () => {
   const [subjectName, setSubjectName] = useState('');
 
   // 렌덤 색상 변수들
-  const color = [randomColor(), randomColor(), randomColor(), randomColor()];
+  // const color = [randomColor(), randomColor(), randomColor(), randomColor()];
+  const color = [
+    '#ffafb0',
+    '#fdd0ac',
+    '#fdfa87',
+    '#bee9b4',
+    '#aee4ff',
+    '#caa6fe',
+  ];
 
   // 현재 url에서 쿼리값 받아서 다시 라우팅
   const logout_onclick = (e) => {
