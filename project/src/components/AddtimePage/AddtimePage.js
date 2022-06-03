@@ -59,7 +59,7 @@ const AddTimePage = () => {
   const logout_onclick = (e) => {
     // let qs = queryString.parse(window.location.search);
     // console.log(Object.values(qs));
-    window.location.href = `/plan?create_at=${Object.values(qs)}`;
+    window.location.href = `/plan?created_at=${Object.values(qs)}`;
   };
 
   // 시간 리스트
@@ -78,7 +78,7 @@ const AddTimePage = () => {
 
   // 현재 날짜정보 get해와서 데이터 가져오기
   axios
-    .get(`http://127.0.0.1:8000/report?create_at=${Object.values(qs)}`)
+    .get(`http://127.0.0.1:8000/report?created_at=${Object.values(qs)}`)
     .then((response) => {
       setData(...response.data);
       console.log(response);

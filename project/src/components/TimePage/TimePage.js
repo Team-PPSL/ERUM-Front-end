@@ -72,7 +72,7 @@ const TimePage = () => {
   const logout_onclick = (e) => {
     let qs = queryString.parse(window.location.search);
     console.log(Object.values(qs));
-    window.location.href = `/report?create_at=${Object.values(qs)}`;
+    window.location.href = `/report?created_at=${Object.values(qs)}`;
   };
 
   //기준 시간
@@ -208,7 +208,6 @@ const TimePage = () => {
             >
               <span>{DataList[2].subject}</span>
             </button> */}
-            <TimeTable />
           </div>
         </div>
         <div className="timelist-box">{stdItem}</div>
