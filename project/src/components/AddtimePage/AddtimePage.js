@@ -28,6 +28,13 @@ import GetAPI from '../../api/GetAPI';
 // ];
 
 const AddTimePage = () => {
+  // 데이터 받아오기
+  const [Test, setTest] = useState([]);
+  const [subject, setsubject] = useState('');
+  const [starttime, setStarttime] = useState(0);
+  const [endtime, setEndtime] = useState(0);
+  const [createAt, setCreatedAt] = useState(0);
+
   // 현재 쿼리 스티링 받아오기
   let qs = queryString.parse(window.location.search);
 
@@ -62,7 +69,7 @@ const AddTimePage = () => {
   axios
     .get(`http://127.0.0.1:8000/plan?create_at=${Object.values(qs)}`)
     .then(function (response) {
-      GetData(response);
+      setTest(response.data);
       console.log(response);
     })
     .catch(function (error) {
@@ -73,11 +80,9 @@ const AddTimePage = () => {
       // always executed
     });
 
-  const GetData = (response) => {
-    return response;
-  };
+  // 조회 데이터가 있을 경우
+
   // 시간표 구성 div
-  const DataList = GetData();
   let i = 0;
   const listItem = timelist.map((idx) => (
     <div
@@ -89,20 +94,16 @@ const AddTimePage = () => {
         borderStyle: 'solid',
         float: 'left',
         color:
-          i < DataList.length &&
-          idx >= DataList[i].starttime &&
-          idx <= DataList[i].endtime
+          i < Test.length && idx >= Test[i].starttime && idx <= Test[i].endtime
             ? color[i]
             : 'white',
         backgroundColor:
-          i < DataList.length &&
-          idx >= DataList[i].starttime &&
-          idx <= DataList[i].endtime
+          i < Test.length && idx >= Test[i].starttime && idx <= Test[i].endtime
             ? color[i]
             : 'white',
       }}
     >
-      {i < DataList.length && idx === DataList[i].endtime ? (i += 1) : null}
+      {i < Test.length && idx === Test[i].endtime ? (i += 1) : null}
     </div>
   ));
 
