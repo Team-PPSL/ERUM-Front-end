@@ -10,22 +10,22 @@ import TimeTable from '../TimePage/TimeTable';
 import GetAPI from '../../api/GetAPI';
 
 // 더미 데이터
-const DataList = [
-  {
-    subject: '수학',
-    starttime: 110,
-    endtime: 120,
-    color: 1,
-    created_at: '20220601',
-  },
-  {
-    subject: '국어',
-    starttime: 240,
-    endtime: 410,
-    color: 2,
-    created_at: '20220601',
-  },
-];
+// const DataList = [
+//   {
+//     subject: '수학',
+//     starttime: 110,
+//     endtime: 120,
+//     color: 1,
+//     created_at: '20220601',
+//   },
+//   {
+//     subject: '국어',
+//     starttime: 240,
+//     endtime: 410,
+//     color: 2,
+//     created_at: '20220601',
+//   },
+// ];
 
 // 현재 쿼리 스티링 받아오기
 let qs = queryString.parse(window.location.search);
@@ -34,7 +34,7 @@ let qs = queryString.parse(window.location.search);
 axios
   .get(`http://127.0.0.1:8000/plan?create_at=${Object.values(qs)}`)
   .then(function (response) {
-    // handle success
+    const DataList = response;
     console.log(response);
   })
   .catch(function (error) {
