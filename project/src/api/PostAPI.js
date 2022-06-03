@@ -1,12 +1,18 @@
 import axios from 'axios';
-
-const url = `http://127.0.0.1:8000/report?create_at=20220601`;
+axios.defaults.xsrfCookieName = 'csrftoken';
+axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 
 axios
-  .post(url)
-  .then((Response) => {
-    console.log(Response.data);
+  .post('/plan?created_at=20220601', {
+    subject: '수학',
+    starttime: 110,
+    endtime: 120,
+    color: 1,
+    created_at: '20220601',
   })
-  .catch((Error) => {
-    console.log(Error);
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
   });

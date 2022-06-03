@@ -7,13 +7,6 @@ import { Helmet } from 'react-helmet';
 import TimeTable from './TimeTable';
 import queryString from 'query-string';
 
-// 박스 생성하는 함수
-// function CreateDiv() {
-//   const div = document.createElement('div');
-//   div.innerHTML = '이것이 추가될 문장입니다.';
-//   document.querySelector('#myDIV').appeadChild(div);
-// }
-
 // 더미 데이터
 const DataList = [
   {
@@ -129,6 +122,7 @@ const TimePage = () => {
       {i < DataList.length && idx === DataList[i].endtime ? (i += 1) : null}
     </div>
   ));
+
   return (
     <>
       <Helmet>

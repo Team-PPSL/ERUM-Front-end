@@ -49,7 +49,7 @@ const DataList = [
 //   }
 // };
 
-const TimePage = () => {
+const AddTimePage = () => {
   // 과목 이름 상태관리
   const [subjectName, setSubjectName] = useState('');
 
@@ -193,4 +193,4 @@ const TimePage = () => {
   );
 };
 
-export default TimePage;
+export default AddTimePage;

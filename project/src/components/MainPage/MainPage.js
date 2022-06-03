@@ -43,32 +43,21 @@ function MainPage() {
     const fullDay = Day[3] + Day[1] + Day[2];
     console.log(fullDay);
     window.location.href = `/plan?create_at=${fullDay}`;
-  };
 
-  // axios
-  //   .post('http://127.0.0.1:8000/plan?create_at=20220601', {
-  //     subject: '과목',
-  //     starttime: '0110',
-  //     endtime: '0120',
-  //     color: '1',
-  //     created_at: '20220601',
-  //   })
-  //   .catch((Error) => {
-  //     console.log(Error);
-  //   });
-  axios
-    .get('http://127.0.0.1:8000/plan?create_at=20220601')
-    .then(function (response) {
-      // handle success
-      console.log(response);
-    })
-    .catch(function (error) {
-      // handle error
-      console.log(error);
-    })
-    .then(function () {
-      // always executed
-    });
+    axios
+      .get(`http://127.0.0.1:8000/plan?create_at=${fullDay}`)
+      .then(function (response) {
+        // handle success
+        console.log(response);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .then(function () {
+        // always executed
+      });
+  };
 
   return (
     <div className="app">

@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BsArrowLeftCircle } from 'react-icons/bs';
-
+import queryString from 'query-string';
 import ReactModal from 'react-modal';
 import './Mymodal.css';
-import ColorPick from './ColorPick';
+import axios from 'axios';
 
-// submit 하면 인스턴스 변수에 저장하는 클래스를 만들어서 거기서 데이터를 불러오는 형식으로 사용
-
+// 메인 함수
 const Mymodal = ({ isOpen, onSubmit, onCancel, getData }) => {
+  const [values, setValues] = useState({
+    subject: '',
+    starttime: '',
+    endtime: '',
+    created_at: '',
+  });
+
   //-------------------------------//
 
   // 시간 선택 변수, 함수
@@ -41,6 +47,7 @@ const Mymodal = ({ isOpen, onSubmit, onCancel, getData }) => {
 
   // 클릭시 제출
   const handleClickSubmit = (e) => {
+    //post 함수
     onSubmit();
     getData('수학');
   };
@@ -93,8 +100,10 @@ const Mymodal = ({ isOpen, onSubmit, onCancel, getData }) => {
     '22',
     '23',
   ];
+
   const MinuteOptions = ['00', '10', '20', '30', '40', '50'];
 
+  // 시간선택
   const handleSelect1 = (e) => {
     setSelected1(e.target.value);
   };
@@ -148,6 +157,7 @@ const Mymodal = ({ isOpen, onSubmit, onCancel, getData }) => {
             type="text"
             style={InputStyle}
             placeholder={'과목명'}
+            value={values.subject}
           />
           <div className="select-time">
             <div>
