@@ -3,8 +3,51 @@ import { BsArrowLeftCircle } from 'react-icons/bs';
 import React, { useState } from 'react';
 import randomColor from 'randomcolor';
 import { Helmet } from 'react-helmet';
-import TimeTable from '../TimePage/TimeTable';
 import queryString from 'query-string';
+import axios from 'axios';
+
+import TimeTable from '../TimePage/TimeTable';
+import GetAPI from '../../api/GetAPI';
+
+// 더미 데이터
+const DataList = [
+  {
+    subject: '수학',
+    starttime: 110,
+    endtime: 120,
+    color: 1,
+    created_at: '20220601',
+  },
+  {
+    subject: '국어',
+    starttime: 240,
+    endtime: 410,
+    color: 2,
+    created_at: '20220601',
+  },
+];
+
+// 개발자 생성하기
+// const handlePushdevloper = async () => {
+//   try {
+//     setIsloading(true);
+//     const createlog = await DevelopCreate(name, position, age);
+//   } catch (err) {
+//     alert(err);
+//   }
+//   setIsloading(false);
+// };
+
+// 개발자 리스트 가져오기
+// const axiosDeveloplist = async () => {
+//   try {
+//     const develop = await DevelopList();
+//     console.log(develop.data);
+//     setDevelop(develop.data);
+//   } catch (err) {
+//     alert(err);
+//   }
+// };
 
 const TimePage = () => {
   // 과목 이름 상태관리
@@ -16,6 +59,57 @@ const TimePage = () => {
   const color3 = randomColor();
   const color4 = randomColor();
 
+  const color = [randomColor(), randomColor(), randomColor()];
+  // 현재 url에서 쿼리값 받아서 다시 라우팅
+  const logout_onclick = (e) => {
+    let qs = queryString.parse(window.location.search);
+    console.log(Object.values(qs));
+    window.location.href = `/plan?create_at=${Object.values(qs)}`;
+  };
+
+  // 시간 리스트
+  let t = 0;
+  const timelist = [];
+  while (t < 2400) {
+    timelist.push(t);
+    if ((t - 50) % 100 === 0) {
+      t += 50;
+    } else if (t - 50 === 0) {
+      t += 50;
+    } else {
+      t += 10;
+    }
+  }
+
+  // 시간표 구성 div
+  let i = 0;
+  const listItem = timelist.map((idx) => (
+    <div
+      index={idx}
+      style={{
+        width: '15%',
+        height: '30.5px',
+        borderColor: 'black',
+        borderStyle: 'solid',
+        float: 'left',
+        color:
+          i < DataList.length &&
+          idx >= DataList[i].starttime &&
+          idx <= DataList[i].endtime
+            ? color[i]
+            : 'white',
+        backgroundColor:
+          i < DataList.length &&
+          idx >= DataList[i].starttime &&
+          idx <= DataList[i].endtime
+            ? color[i]
+            : 'white',
+      }}
+    >
+      {i < DataList.length && idx === DataList[i].endtime ? (i += 1) : null}
+    </div>
+  ));
+
   // 과목 이름 데이터 가져오는 함수
   const getData = (subjectName) => {
     setSubjectName(subjectName);
@@ -25,13 +119,6 @@ const TimePage = () => {
     window.location.href = '/';
   };
 
-  // 현재 url에서 쿼리값 받아서 다시 라우팅
-  const logout_onclick = (e) => {
-    let qs = queryString.parse(window.location.search);
-    console.log(Object.values(qs));
-    window.location.href = `/plan?create_at=${Object.values(qs)}`;
-  };
-
   //기준 시간
   const stdlist = [];
   for (let std = 0; std < 24; std++) {
@@ -39,9 +126,6 @@ const TimePage = () => {
   }
   const stdItem = stdlist.map((num) => <div>{num}</div>);
 
-  // cosnt onChange = () => {
-
-  // }
   return (
     <>
       <Helmet>
@@ -68,7 +152,7 @@ const TimePage = () => {
           <div className="subject-box">
             <button
               style={{
-                backgroundColor: color1,
+                backgroundColor: color[0],
                 width: '150px',
                 height: '50px',
                 color: 'black',
@@ -82,7 +166,7 @@ const TimePage = () => {
             </button>
             <button
               style={{
-                backgroundColor: color2,
+                backgroundColor: color[1],
                 width: '150px',
                 height: '50px',
                 color: 'black',
@@ -93,38 +177,11 @@ const TimePage = () => {
             >
               <span>머신러닝</span>
             </button>
-            {/* <button 
-            style={{
-              backgroundColor: color3,
-              width: '100px',
-              height: '50px',
-              color: 'black',
-              borderRadius: '30px',
-              border: 0,
-              outline: 0,
-            }}
-          >
-            <span>과목3</span>
-          </button>
-          <button
-            style={{
-              backgroundColor: color4,
-              width: '100px',
-              height: '50px',
-              color: 'black',
-              borderRadius: '30px',
-              border: 0,
-              outline: 0,
-            }}
-          >
-            <span>과목4</span>
-          </button> */}
           </div>
         </div>
         <div className="timelist-box">{stdItem}</div>
-        <div className="second-box">
-          <TimeTable />
-        </div>
+        {/* 시간표 나타내는 박스 */}
+        <div className="second-box">{listItem}</div>
         <div className="third-box">
           <div className="Addsubject-box">
             <div>오늘의 공부시간</div>

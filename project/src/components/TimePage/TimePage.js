@@ -14,6 +14,31 @@ import queryString from 'query-string';
 //   document.querySelector('#myDIV').appeadChild(div);
 // }
 
+// 더미 데이터
+const DataList = [
+  {
+    subject: '수학',
+    starttime: 110,
+    endtime: 120,
+    color: 1,
+    created_at: '20220601',
+  },
+  {
+    subject: '국어',
+    starttime: 240,
+    endtime: 410,
+    color: 2,
+    created_at: '20220601',
+  },
+  {
+    subject: '과학',
+    starttime: 800,
+    endtime: 900,
+    color: 3,
+    created_at: '20220601',
+  },
+];
+
 const TimePage = () => {
   // modal창 열고 닫는 상태관리
   const [isOpen, setOpen] = useState(false);
@@ -22,10 +47,7 @@ const TimePage = () => {
   const [subjectName, setSubjectName] = useState('');
 
   // 렌덤 색상 변수들
-  const color1 = randomColor();
-  const color2 = randomColor();
-  const color3 = randomColor();
-  const color4 = randomColor();
+  const color = [randomColor(), randomColor(), randomColor()];
 
   // 시간표 추가 클릭시 실행되는 함수
   const handlerClick = () => {
@@ -65,6 +87,48 @@ const TimePage = () => {
   }
   const stdItem = stdlist.map((num) => <div key={num}>{num}</div>);
 
+  // 시간 리스트
+  let t = 0;
+  const timelist = [];
+  while (t < 2400) {
+    timelist.push(t);
+    if ((t - 50) % 100 === 0) {
+      t += 50;
+    } else if (t - 50 === 0) {
+      t += 50;
+    } else {
+      t += 10;
+    }
+  }
+
+  // 시간표 구성 div
+  let i = 0;
+  const listItem = timelist.map((idx) => (
+    <div
+      index={idx}
+      style={{
+        width: '15%',
+        height: '30.5px',
+        borderColor: 'black',
+        borderStyle: 'solid',
+        float: 'left',
+        color:
+          i < DataList.length &&
+          idx >= DataList[i].starttime &&
+          idx <= DataList[i].endtime
+            ? color[i]
+            : 'white',
+        backgroundColor:
+          i < DataList.length &&
+          idx >= DataList[i].starttime &&
+          idx <= DataList[i].endtime
+            ? color[i]
+            : 'white',
+      }}
+    >
+      {i < DataList.length && idx === DataList[i].endtime ? (i += 1) : null}
+    </div>
+  ));
   return (
     <>
       <Helmet>
@@ -91,7 +155,7 @@ const TimePage = () => {
           <div className="subject-box">
             <button
               style={{
-                backgroundColor: color1,
+                backgroundColor: color[0],
                 width: '150px',
                 height: '50px',
                 color: 'black',
@@ -101,11 +165,11 @@ const TimePage = () => {
                 outline: 0,
               }}
             >
-              <span>{subjectName}</span>
+              <span>{DataList[0].subject}</span>
             </button>
             <button
               style={{
-                backgroundColor: color2,
+                backgroundColor: color[1],
                 width: '150px',
                 height: '50px',
                 color: 'black',
@@ -115,11 +179,11 @@ const TimePage = () => {
                 outline: 0,
               }}
             >
-              <span>과목2</span>
+              <span>{DataList[1].subject}</span>
             </button>
             <button
               style={{
-                backgroundColor: color3,
+                backgroundColor: color[2],
                 width: '150px',
                 height: '50px',
                 color: 'black',
@@ -129,14 +193,12 @@ const TimePage = () => {
                 outline: 0,
               }}
             >
-              <span>과목3</span>
+              <span>{DataList[2].subject}</span>
             </button>
           </div>
         </div>
         <div className="timelist-box">{stdItem}</div>
-        <div className="second-box">
-          <TimeTable />
-        </div>
+        <div className="second-box">{listItem}</div>
         <div className="third-box">
           <button className="Addsubject-button" onClick={handlerClick}>
             시간표 추가

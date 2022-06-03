@@ -4,10 +4,13 @@ import 'react-calendar/dist/Calendar.css';
 import './MainPage.css';
 import 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import axios from 'axios';
 
 function MainPage() {
+  // 날짜 상태 관리
   const [date, setDate] = useState(new Date());
 
+  // date를 숫자로 바꾸기
   const ChangeDay = (date) => {
     setDate(date);
     let Day = date.toString().split(' ');
@@ -41,6 +44,31 @@ function MainPage() {
     console.log(fullDay);
     window.location.href = `/plan?create_at=${fullDay}`;
   };
+
+  // axios
+  //   .post('http://127.0.0.1:8000/plan?create_at=20220601', {
+  //     subject: '과목',
+  //     starttime: '0110',
+  //     endtime: '0120',
+  //     color: '1',
+  //     created_at: '20220601',
+  //   })
+  //   .catch((Error) => {
+  //     console.log(Error);
+  //   });
+  axios
+    .get('http://127.0.0.1:8000/plan?create_at=20220601')
+    .then(function (response) {
+      // handle success
+      console.log(response);
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
+    .then(function () {
+      // always executed
+    });
 
   return (
     <div className="app">

@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
+import styled from 'styled-components';
+import randomColor from 'randomcolor';
 
 const TimeTable = () => {
   // 시간 테이블
@@ -14,16 +16,19 @@ const TimeTable = () => {
       t += 10;
     }
   }
+  const isStart = 600;
+  const isEnd = 640;
 
-  const listItem = timelist.map((id) => (
+  const listItem = timelist.map((key) => (
     <div
-      key={id}
+      key={key}
       style={{
         width: '15%',
         height: '30.5px',
         borderColor: 'black',
         borderStyle: 'solid',
         float: 'left',
+        backgroundColor: key >= isStart && key <= isEnd ? 'pink' : 'white',
       }}
     ></div>
   ));

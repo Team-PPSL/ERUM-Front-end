@@ -49,30 +49,30 @@
 /* 중앙 */
 .container {
     width: 80%;
-    height: 950px;
+    height: 850px;
     margin: 0 auto;
     border-radius: 138px 138px 0 0;
     background-color: white;
 }
 .first-box {
     width: 25%;
-    height: 950px;
+    height: 850px;
     float: left;
 }
 .timelist-box {
     width: 3.5%;
-    height: 950px;
+    height: 850px;
     float: left;
     font-size: 27.5px;
 }
 .second-box {
     width: 40%;
-    height: 950px;
+    height: 850px;
     float: left;
 }
 .third-box {
     width: 30%;
-    height: 950px;
+    height: 850px;
     float: left;
 }
 
