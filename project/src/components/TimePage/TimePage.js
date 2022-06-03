@@ -147,7 +147,7 @@ const TimePage = () => {
       <div className="container">
         <div className="first-box">
           <div className="subject-box">
-            <button
+            {/* <button
               style={{
                 backgroundColor: color[0],
                 width: '150px',
@@ -188,7 +188,7 @@ const TimePage = () => {
               }}
             >
               <span>{DataList[2].subject}</span>
-            </button>
+            </button> */}
           </div>
         </div>
         <div className="timelist-box">{stdItem}</div>

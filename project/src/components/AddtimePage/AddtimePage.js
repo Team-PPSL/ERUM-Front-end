@@ -27,43 +27,35 @@ const DataList = [
   },
 ];
 
-// 개발자 생성하기
-// const handlePushdevloper = async () => {
-//   try {
-//     setIsloading(true);
-//     const createlog = await DevelopCreate(name, position, age);
-//   } catch (err) {
-//     alert(err);
-//   }
-//   setIsloading(false);
-// };
+// 현재 쿼리 스티링 받아오기
+let qs = queryString.parse(window.location.search);
 
-// 개발자 리스트 가져오기
-// const axiosDeveloplist = async () => {
-//   try {
-//     const develop = await DevelopList();
-//     console.log(develop.data);
-//     setDevelop(develop.data);
-//   } catch (err) {
-//     alert(err);
-//   }
-// };
+// 현재 날짜정보 get해와서 데이터 가져오기
+axios
+  .get(`http://127.0.0.1:8000/plan?create_at=${Object.values(qs)}`)
+  .then(function (response) {
+    // handle success
+    console.log(response);
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+  .then(function () {
+    // always executed
+  });
 
 const AddTimePage = () => {
   // 과목 이름 상태관리
   const [subjectName, setSubjectName] = useState('');
 
   // 렌덤 색상 변수들
-  const color1 = randomColor();
-  const color2 = randomColor();
-  const color3 = randomColor();
-  const color4 = randomColor();
+  const color = [randomColor(), randomColor(), randomColor(), randomColor()];
 
-  const color = [randomColor(), randomColor(), randomColor()];
   // 현재 url에서 쿼리값 받아서 다시 라우팅
   const logout_onclick = (e) => {
-    let qs = queryString.parse(window.location.search);
-    console.log(Object.values(qs));
+    // let qs = queryString.parse(window.location.search);
+    // console.log(Object.values(qs));
     window.location.href = `/plan?create_at=${Object.values(qs)}`;
   };
 
