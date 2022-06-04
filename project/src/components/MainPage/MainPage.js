@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import './MainPage.css';
+import '../../styles/MainPage.css';
 import 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import axios from 'axios';
@@ -42,10 +42,10 @@ function MainPage() {
     }
     const fullDay = Day[3] + Day[1] + Day[2];
     console.log(fullDay);
-    window.location.href = `/plan?create_at=${fullDay}`;
+    window.location.href = `/plan?created_at=${fullDay}`;
 
     axios
-      .get(`http://127.0.0.1:8000/plan?create_at=${fullDay}`)
+      .get(`http://127.0.0.1:8000/plan?created_at=${fullDay}`)
       .then(function (response) {
         // handle success
         console.log(response);

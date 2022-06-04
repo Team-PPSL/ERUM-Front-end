@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { BsArrowLeftCircle } from 'react-icons/bs';
 import queryString from 'query-string';
 import ReactModal from 'react-modal';
-import './Mymodal.css';
+import '../../styles/Mymodal.css';
 import axios from 'axios';
 
 // 메인 함수
-const Mymodal = ({ isOpen, onSubmit, onCancel, getData }) => {
+const Mymodal = ({ isOpen, onSubmit, onCancel }) => {
   const [values, setValues] = useState({
     subject: '',
     starttime: '',
@@ -48,7 +48,6 @@ const Mymodal = ({ isOpen, onSubmit, onCancel, getData }) => {
   const handleClickSubmit = (e) => {
     //post 함수
     onSubmit();
-    getData('수학');
   };
 
   // 클릭시 뒤로 가기

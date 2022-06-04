@@ -1,15 +1,18 @@
-import './TimePage.css';
+import '../../styles/TimePage.css';
 import { BsArrowLeftCircle } from 'react-icons/bs';
-import React, { createElement, useEffect, useState } from 'react';
+import React, { createElement, useEffect, useState, useRef } from 'react';
+import axios from 'axios';
 import MyModal from './Mymodal';
 import randomColor from 'randomcolor';
 import { Helmet } from 'react-helmet';
-import TimeTable from './TimeTable';
+import TimeList from './TimeList';
 import queryString from 'query-string';
+import CreateTime from './CreateTime';
 
 // 더미 데이터
 const DataList = [
   {
+    id: 1,
     subject: '수학',
     starttime: 110,
     endtime: 120,
@@ -17,6 +20,7 @@ const DataList = [
     created_at: '20220601',
   },
   {
+    id: 2,
     subject: '국어',
     starttime: 240,
     endtime: 410,
@@ -24,6 +28,7 @@ const DataList = [
     created_at: '20220601',
   },
   {
+    id: 3,
     subject: '과학',
     starttime: 800,
     endtime: 900,
@@ -33,36 +38,57 @@ const DataList = [
 ];
 
 const TimePage = () => {
-  // modal창 열고 닫는 상태관리
-  const [isOpen, setOpen] = useState(false);
+  let qs = queryString.parse(window.location.search);
+  const [Data, setData] = useState([]);
+  const [users, setUsers] = useState([]); // 데이터 상태관리 변수
+  const [inputs, setInputs] = useState({
+    subjectname: '',
+  });
 
-  // 과목 이름 상태관리
-  const [subjectName, setSubjectName] = useState('');
+  const { subjectname } = inputs;
+  const nextId = useRef(30);
 
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    setInputs({
+      ...inputs,
+      [name]: value,
+    });
+  };
+  const onCreate = () => {
+    const user = {
+      id: nextId.current,
+      subjectname,
+    };
+
+    setUsers([...users, user]);
+    // 또는 setUsers(users.concat(user));
+
+    setInputs({
+      subjectname: '',
+    });
+    nextId.current += 1;
+  };
+
+  //====================================================================================================//
   // 렌덤 색상 변수들
-  const color = [randomColor(), randomColor(), randomColor()];
-
-  const NameList = [];
-
-  // 시간표 추가 클릭시 실행되는 함수
-  const handlerClick = (e) => {
-    setOpen(true);
-  };
-
-  // modal창에서 뒤로 가기 버튼 클릭 시 실행되는 함수
-  const handleModalCancel = () => {
-    setOpen(false);
-  };
-
-  // modal창에서 제출 버튼 클릭 시 실행되는 함수
-  const handleModalSubmit = () => {
-    setOpen(false);
-  };
-
-  // 과목 이름 데이터 가져오는 함수
-  const getData = (subjectName) => {
-    setSubjectName(subjectName);
-  };
+  const color = [
+    '#ffafb0',
+    '#fdd0ac',
+    '#fdfa87',
+    '#bee9b4',
+    '#aee4ff',
+    '#caa6fe',
+    '#caa6fe',
+    '#caa6fe',
+    '#caa6fe',
+    '#caa6fe',
+    '#caa6fe',
+    '#caa6fe',
+    '#caa6fe',
+    '#caa6fe',
+    '#caa6fe',
+  ];
 
   const back_onclick = (e) => {
     window.location.href = '/';
@@ -70,7 +96,7 @@ const TimePage = () => {
 
   // 현재 url에서 쿼리값 받아서 다시 라우팅
   const logout_onclick = (e) => {
-    let qs = queryString.parse(window.location.search);
+    // let qs = queryString.parse(window.location.search);
     console.log(Object.values(qs));
     window.location.href = `/report?created_at=${Object.values(qs)}`;
   };
@@ -80,7 +106,7 @@ const TimePage = () => {
   for (let std = 0; std < 24; std++) {
     stdlist.push(('00' + std).slice(-2));
   }
-  const stdItem = stdlist.map((num) => <div key={num}>{num}</div>);
+  const stdItem = stdlist.map((key) => <div key={key}>{key}</div>);
 
   // 시간 리스트
   let t = 0;
@@ -98,9 +124,9 @@ const TimePage = () => {
 
   // 시간표 구성 div
   let i = 0;
-  const listItem = timelist.map((idx) => (
+  const listItem = timelist.map((key) => (
     <div
-      index={idx}
+      key={key}
       style={{
         width: '15%',
         height: '30.5px',
@@ -108,39 +134,36 @@ const TimePage = () => {
         borderStyle: 'solid',
         float: 'left',
         color:
-          i < DataList.length &&
-          idx >= DataList[i].starttime &&
-          idx <= DataList[i].endtime
+          i < Data.length && key >= Number(Data[i].starttime) && key < Number(Data[i].endtime)
             ? color[i]
             : 'white',
         backgroundColor:
-          i < DataList.length &&
-          idx >= DataList[i].starttime &&
-          idx <= DataList[i].endtime
+          i < Data.length && key >= Number(Data[i].starttime) && key < Number(Data[i].endtime)
             ? color[i]
             : 'white',
       }}
     >
-      {i < DataList.length && idx === DataList[i].endtime ? (i += 1) : null}
+      {i < Data.length && key === Number(Data[i].endtime) ? (i += 1) : null}
     </div>
   ));
 
-  const NameItem = NameList.map((name) => (
-    <button
-      style={{
-        width: '150px',
-        height: '50px',
-        color: 'black',
-        marginBottom: '30px',
-        borderRadius: '30px',
-        border: 0,
-        outline: 0,
-        backgroundColor: 'pink',
-      }}
-    >
-      name
-    </button>
-  ));
+  // GET 데이터 불러오기
+  const onClick = (e) => {
+    // setData(DataList);
+    axios
+      .get(`http://127.0.0.1:8000/plan?created_at=${Object.values(qs)}`)
+      .then((response) => {
+        setData(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        // handle error
+        console.log(error);
+      })
+      .then(() => {
+        // always executed
+      });
+  };
 
   return (
     <>
@@ -166,61 +189,19 @@ const TimePage = () => {
       <div className="container">
         <div className="first-box">
           <div className="subject-box">
-            {/* <button
-              style={{
-                backgroundColor: color[0],
-                width: '150px',
-                height: '50px',
-                color: 'black',
-                marginBottom: '30px',
-                borderRadius: '30px',
-                border: 0,
-                outline: 0,
-              }}
-            >
-              <span>{DataList[0].subject}</span>
-            </button>
-            <button
-              style={{
-                backgroundColor: color[1],
-                width: '150px',
-                height: '50px',
-                color: 'black',
-                marginBottom: '30px',
-                borderRadius: '30px',
-                border: 0,
-                outline: 0,
-              }}
-            >
-              <span>{DataList[1].subject}</span>
-            </button>
-            <button
-              style={{
-                backgroundColor: color[2],
-                width: '150px',
-                height: '50px',
-                color: 'black',
-                marginBottom: '30px',
-                borderRadius: '30px',
-                border: 0,
-                outline: 0,
-              }}
-            >
-              <span>{DataList[2].subject}</span>
-            </button> */}
+            <TimeList users={Data} />
           </div>
         </div>
         <div className="timelist-box">{stdItem}</div>
         <div className="second-box">{listItem}</div>
         <div className="third-box">
-          <button className="Addsubject-button" onClick={handlerClick}>
-            시간표 추가
+          <button className="test-button" onClick={onClick}>
+            데이터 불러오기
           </button>
-          <MyModal
-            isOpen={isOpen}
-            onSubmit={handleModalSubmit}
-            onCancel={handleModalCancel}
-            getData={getData}
+          <CreateTime
+            subjectname={subjectname}
+            onChange={onChange}
+            onCreate={onCreate}
           />
         </div>
       </div>
